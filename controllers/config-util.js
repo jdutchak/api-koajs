@@ -1,22 +1,24 @@
-const dotenv = require('dotenv');
-
-module.exports = {
-    loadConfigs: loadConfigs
-};
-
 /**
  * Load environment configurations
  */
-loadConfigs = (environment) => {
 
-    let oldEnv = JSON.parse(JSON.stringify(process.env));
+const dotenv = require('dotenv');
 
-    dotenv.config({path: './environments/.' + environment});
+module.exports = {
 
-    Object.keys(process.env).forEach((key) => {
-        if (oldEnv[key] != null) {
-            process.env[key] = oldEnv[key];
-        }
-    });
+    loadConfigs: (environment) => {
+
+        let oldEnv = JSON.parse(JSON.stringify(process.env));
+
+        dotenv.config({path: './environments/.' + environment});
+
+        Object.keys(process.env).forEach((key) => {
+            if (oldEnv[key] != null) {
+                process.env[key] = oldEnv[key];
+            }
+        });
+
+    }
 
 };
+
